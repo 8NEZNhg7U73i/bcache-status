@@ -71,11 +71,14 @@ def interpret_sectors(x):
         'Y': 1 << 80,
     }
 
-    factor = 1
-    if x[-1] in factors:
-        factor = factors[x[-1]]
-        x = x[:-1]
-    return int(float(x) * factor / 512)
+    if len(x)>0:
+        factor = 1
+        if x[-1] in factors:
+            factor = factors[x[-1]]
+            x = x[:-1]
+        return int(float(x) * factor / 512)
+    else:
+        return 1
 
 def pretty_size(x):
     return format_sectors(interpret_sectors(x))
